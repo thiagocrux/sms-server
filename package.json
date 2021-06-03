@@ -1,0 +1,31 @@
+{
+  "name": "sms-server",
+  "version": "1.0.0",
+  "description": "Backend of the Syphilis Monitoring System of Petrolina application, developed with Node.js and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "cz"
+  },
+  "author": "Thiago Cruz",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "express": "^4.17.1",
+    "husky": "^6.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "mongoose": "^5.12.10",
+    "morgan": "^1.10.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
