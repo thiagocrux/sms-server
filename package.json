@@ -4,7 +4,7 @@
   "description": "Backend of the Syphilis Monitoring System of Petrolina application, developed with Node.js and MongoDB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon ./src/server.js",
     "commit": "cz"
   },
   "author": "Thiago Cruz",
