@@ -27,6 +27,7 @@ exports.createExam = async (req, res) => {
       ...req.body,
       patient: req.params.patientID,
       createdAt: Date.now(),
+      updatedAt: null,
     });
 
     res.status(200).json({

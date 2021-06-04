@@ -26,6 +26,7 @@ exports.createUser = async (req, res) => {
     const createdUser = await User.create({
       ...req.body,
       createdAt: Date.now(),
+      updatedAt: null,
     });
 
     res.status(200).json({

@@ -23,9 +23,6 @@ exports.getAllTreatments = async (req, res) => {
 
 exports.createTreatment = async (req, res) => {
   try {
-    const { patientID } = req.params;
-    console.log(patientID);
-
     const createdTreatment = await Treatment.create({
       ...req.body,
       patient: req.params.patientID,

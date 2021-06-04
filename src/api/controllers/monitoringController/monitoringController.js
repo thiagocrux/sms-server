@@ -23,10 +23,13 @@ exports.getAllMonitorings = async (req, res) => {
 
 exports.createMonitoring = async (req, res) => {
   try {
+    const { patientID } = req.params;
+
     const createdMonitoring = await Monitoring.create({
       ...req.body,
       patient: req.params.patientID,
       createdAt: Date.now(),
+      updatedAt: null,
     });
 
     res.status(200).json({

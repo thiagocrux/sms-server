@@ -26,6 +26,7 @@ exports.createPatient = async (req, res) => {
     const createdPatient = await Patient.create({
       ...req.body,
       createdAt: Date.now(),
+      updatedAt: null,
     });
 
     res.status(200).json({
