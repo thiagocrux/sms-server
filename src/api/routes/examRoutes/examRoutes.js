@@ -3,13 +3,10 @@ const { examController } = require('../../controllers');
 
 const router = express.Router();
 
-router
-  .route('/patients/:patientID/exams')
-  .get(examController.getAllExams)
-  .post(examController.createExam);
+router.route('/:patientID/exams').get(examController.getAllExams).post(examController.createExam);
 
 router
-  .route('/patients/:patientID/exams/:examID')
+  .route('/:patientID/exams/:examID')
   .get(examController.getExam)
   .patch(examController.updateExam)
   .delete(examController.deleteExam);
