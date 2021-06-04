@@ -2,7 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
-const { patientRoutes } = require('./api/routes');
+
+const {
+  examRoutes,
+  monitoringRoutes,
+  patientRoutes,
+  treatmentRoutes,
+  userRoutes,
+} = require('./api/routes');
 
 /* Config */
 
@@ -23,6 +30,10 @@ app.use((req, res, next) => {
 
 /* Routes */
 
+app.use('/api/v1/patients/:patientID/exams', examRoutes);
+app.use('/api/v1/patients/:patientID/monitorings', monitoringRoutes);
 app.use('/api/v1/patients', patientRoutes);
+app.use('/api/v1/patients/', treatmentRoutes);
+app.use('/api/v1/patients/:patientID/users', userRoutes);
 
 module.exports = app;
