@@ -30,10 +30,10 @@ app.use((req, res, next) => {
 
 /* Routes */
 
-app.use('/api/v1/patients/:patientID/exams', examRoutes);
-app.use('/api/v1/patients/:patientID/monitorings', monitoringRoutes);
+app.use('/api/v1/patients', examRoutes);
+app.use('/api/v1/patients', monitoringRoutes);
 app.use('/api/v1/patients', patientRoutes);
-app.use('/api/v1/patients/', treatmentRoutes);
-app.use('/api/v1/patients/:patientID/users', userRoutes);
+app.use('/api/v1/patients', treatmentRoutes);
+app.use('/api/v1/users', userRoutes);
 
 module.exports = app;
