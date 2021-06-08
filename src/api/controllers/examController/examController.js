@@ -1,4 +1,5 @@
 const Exam = require('../../models/Exam');
+const moment = require('moment');
 
 exports.getExam = async (req, res) => {
   try {
@@ -23,10 +24,12 @@ exports.getAllExams = async (req, res) => {
 
 exports.createExam = async (req, res) => {
   try {
+    const currentDateTime = moment().utc(-03).format();
+
     const createdExam = await Exam.create({
       ...req.body,
       patient: req.params.patientID,
-      createdAt: Date.now(),
+      createdAt: currentDateTime,
       updatedAt: null,
     });
 
@@ -43,7 +46,8 @@ exports.createExam = async (req, res) => {
 exports.updateExam = async (req, res) => {
   try {
     const id = req.params.examID;
-    const updates = { ...req.body, updatedAt: Date.now() };
+    const currentDateTime = moment().utc(-03).format();
+    const updates = { ...req.body, updatedAt: currentDateTime };
     const updatedPatient = await Exam.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({

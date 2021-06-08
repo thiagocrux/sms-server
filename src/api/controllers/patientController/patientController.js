@@ -1,4 +1,5 @@
 const Patient = require('../../models/Patient');
+const moment = require('moment');
 
 exports.getPatient = async (req, res) => {
   try {
@@ -23,9 +24,11 @@ exports.getAllPatients = async (req, res) => {
 
 exports.createPatient = async (req, res) => {
   try {
+    const currentDateTime = moment().utc(-03).format();
+
     const createdPatient = await Patient.create({
       ...req.body,
-      createdAt: Date.now(),
+      createdAt: currentDateTime,
       updatedAt: null,
     });
 
@@ -42,7 +45,8 @@ exports.createPatient = async (req, res) => {
 exports.updatePatient = async (req, res) => {
   try {
     const id = req.params.id;
-    const updates = { ...req.body, updatedAt: Date.now() };
+    const currentDateTime = moment().utc(-03).format();
+    const updates = { ...req.body, updatedAt: currentDateTime };
     const updatedPatient = await Patient.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({
