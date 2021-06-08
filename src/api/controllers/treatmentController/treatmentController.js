@@ -6,7 +6,7 @@ exports.getTreatment = async (req, res) => {
     const treatment = await Treatment.findById(req.params.treatmentID);
     console.log(treatment);
 
-    res.status(200).json({ data: treatment });
+    res.status(200).json({ treatment });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -16,7 +16,7 @@ exports.getAllTreatments = async (req, res) => {
   try {
     const allTreatments = await Treatment.find({});
 
-    res.status(200).json({ data: allTreatments });
+    res.status(200).json({ treatments: allTreatments });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -34,7 +34,7 @@ exports.createTreatment = async (req, res) => {
     });
 
     res.status(200).json({
-      data: createdTreatment,
+      treatment: createdTreatment,
     });
   } catch (error) {
     res.status(400).json({
@@ -51,7 +51,7 @@ exports.updateTreatment = async (req, res) => {
     const updatedTreatment = await Treatment.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({
-      data: updatedTreatment,
+      treatment: updatedTreatment,
     });
   } catch (error) {
     res.status(400).json({
@@ -65,7 +65,7 @@ exports.deleteTreatment = async (req, res) => {
     await Treatment.findByIdAndDelete(req.params.treatmentID);
 
     res.status(204).json({
-      data: null,
+      treatment: null,
     });
   } catch (error) {
     res.status(400).json({

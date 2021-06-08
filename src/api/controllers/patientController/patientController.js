@@ -6,7 +6,7 @@ exports.getPatient = async (req, res) => {
     const patient = await Patient.findById(req.params.id);
     console.log(patient);
 
-    res.status(200).json({ data: patient });
+    res.status(200).json({ patient });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -16,7 +16,7 @@ exports.getAllPatients = async (req, res) => {
   try {
     const allPatients = await Patient.find({});
 
-    res.status(200).json({ data: allPatients });
+    res.status(200).json({ patients: allPatients });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -33,7 +33,7 @@ exports.createPatient = async (req, res) => {
     });
 
     res.status(200).json({
-      data: createdPatient,
+      patient: createdPatient,
     });
   } catch (error) {
     res.status(400).json({
@@ -50,7 +50,7 @@ exports.updatePatient = async (req, res) => {
     const updatedPatient = await Patient.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({
-      data: updatedPatient,
+      patient: updatedPatient,
     });
   } catch (error) {
     res.status(400).json({
@@ -64,7 +64,7 @@ exports.deletePatient = async (req, res) => {
     await Patient.findByIdAndDelete(req.params.id);
 
     res.status(204).json({
-      data: null,
+      patient: null,
     });
   } catch (error) {
     res.status(400).json({

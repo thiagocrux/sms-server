@@ -6,7 +6,7 @@ exports.getExam = async (req, res) => {
     const exam = await Exam.findById(req.params.examID);
     console.log(exam);
 
-    res.status(200).json({ data: exam });
+    res.status(200).json({ exam });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -16,7 +16,7 @@ exports.getAllExams = async (req, res) => {
   try {
     const allExams = await Exam.find({});
 
-    res.status(200).json({ data: allExams });
+    res.status(200).json({ exams: allExams });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -34,7 +34,7 @@ exports.createExam = async (req, res) => {
     });
 
     res.status(200).json({
-      data: createdExam,
+      exam: createdExam,
     });
   } catch (error) {
     res.status(400).json({
@@ -48,10 +48,10 @@ exports.updateExam = async (req, res) => {
     const id = req.params.examID;
     const currentDateTime = moment().utc(-03).format();
     const updates = { ...req.body, updatedAt: currentDateTime };
-    const updatedPatient = await Exam.findByIdAndUpdate(id, updates, { new: true });
+    const updatedExam = await Exam.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({
-      data: updatedPatient,
+      exam: updatedExam,
     });
   } catch (error) {
     res.status(400).json({
@@ -65,7 +65,7 @@ exports.deleteExam = async (req, res) => {
     await Exam.findByIdAndDelete(req.params.examID);
 
     res.status(204).json({
-      data: null,
+      exam: null,
     });
   } catch (error) {
     res.status(400).json({

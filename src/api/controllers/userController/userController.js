@@ -6,7 +6,7 @@ exports.getUser = async (req, res) => {
     const user = await User.findById(req.params.id);
     console.log(user);
 
-    res.status(200).json({ data: user });
+    res.status(200).json({ user });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -16,7 +16,7 @@ exports.getAllUsers = async (req, res) => {
   try {
     const allUsers = await User.find({});
 
-    res.status(200).json({ data: allUsers });
+    res.status(200).json({ users: allUsers });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
     });
 
     res.status(200).json({
-      data: createdUser,
+      user: createdUser,
     });
   } catch (error) {
     res.status(400).json({
@@ -50,7 +50,7 @@ exports.updateUser = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({
-      data: updatedUser,
+      user: updatedUser,
     });
   } catch (error) {
     res.status(400).json({
@@ -64,7 +64,7 @@ exports.deleteUser = async (req, res) => {
     await User.findByIdAndDelete(req.params.id);
 
     res.status(204).json({
-      data: null,
+      user: null,
     });
   } catch (error) {
     res.status(400).json({

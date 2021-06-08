@@ -6,7 +6,7 @@ exports.getMonitoring = async (req, res) => {
     const monitoring = await Monitoring.findById(req.params.monitoringID);
     console.log(monitoring);
 
-    res.status(200).json({ data: monitoring });
+    res.status(200).json({ monitoring });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -16,7 +16,7 @@ exports.getAllMonitorings = async (req, res) => {
   try {
     const allMonitorings = await Monitoring.find({});
 
-    res.status(200).json({ data: allMonitorings });
+    res.status(200).json({ monitorings: allMonitorings });
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -34,7 +34,7 @@ exports.createMonitoring = async (req, res) => {
     });
 
     res.status(200).json({
-      data: createdMonitoring,
+      monitoring: createdMonitoring,
     });
   } catch (error) {
     res.status(400).json({
@@ -51,7 +51,7 @@ exports.updateMonitoring = async (req, res) => {
     const updatedMonitoring = await Monitoring.findByIdAndUpdate(id, updates, { new: true });
 
     res.status(200).json({
-      data: updatedMonitoring,
+      monitoring: updatedMonitoring,
     });
   } catch (error) {
     res.status(400).json({
@@ -65,7 +65,7 @@ exports.deleteMonitoring = async (req, res) => {
     await Monitoring.findByIdAndDelete(req.params.monitoringID);
 
     res.status(204).json({
-      data: null,
+      monitoring: null,
     });
   } catch (error) {
     res.status(400).json({
