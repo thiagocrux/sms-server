@@ -5,9 +5,9 @@ const { model, Schema } = mongoose;
 const patientSchema = new Schema({
   susCardNumber: { type: String, unique: true },
   name: { type: String, required: true },
-  cpf: { type: String, required: true },
+  cpf: { type: String, required: true, unique: true },
   socialName: { type: String, default: null },
-  birthDate: { type: String, required: true }, // TODO: Checar se é o melhor tipo
+  birthDate: { type: String, required: true },
   gender: { type: String, required: true },
   nationality: { type: String, required: true },
   phone: { type: String, required: true },
