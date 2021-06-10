@@ -3,7 +3,7 @@ const moment = require('moment');
 
 exports.getPatient = async (req, res) => {
   try {
-    const patient = await Patient.findById(req.params.id);
+    const patient = await Patient.findById(req.params.patientID);
     console.log(patient);
 
     res.status(200).json({ patient });
