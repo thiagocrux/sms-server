@@ -14,7 +14,8 @@ exports.getTreatment = async (req, res) => {
 
 exports.getAllTreatments = async (req, res) => {
   try {
-    const allTreatments = await Treatment.find({});
+    const { patientID } = req.params;
+    const allTreatments = await Treatment.find({ patient: patientID });
 
     res.status(200).json({ treatments: allTreatments });
   } catch (error) {

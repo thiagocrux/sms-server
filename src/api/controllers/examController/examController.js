@@ -14,7 +14,8 @@ exports.getExam = async (req, res) => {
 
 exports.getAllExams = async (req, res) => {
   try {
-    const allExams = await Exam.find({});
+    const { patientID } = req.params;
+    const allExams = await Exam.find({ patient: patientID });
 
     res.status(200).json({ exams: allExams });
   } catch (error) {
