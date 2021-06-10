@@ -14,7 +14,8 @@ exports.getMonitoring = async (req, res) => {
 
 exports.getAllMonitorings = async (req, res) => {
   try {
-    const allMonitorings = await Monitoring.find({});
+    const { patientID } = req.params;
+    const allMonitorings = await Monitoring.find({ patient: patientID });
 
     res.status(200).json({ monitorings: allMonitorings });
   } catch (error) {
