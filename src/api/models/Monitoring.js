@@ -3,11 +3,11 @@ const { model, Schema } = mongoose;
 
 const monitoringSchema = new Schema({
   vdrl1Date: { type: Date, required: true },
-  vdrl1Titulation: { type: String, required: true },
+  vdrl1Titration: { type: String, required: true },
   vdrl2Date: { type: Date, required: true },
-  vdrl2Titulation: { type: String, required: true },
+  vdrl2Titration: { type: String, required: true },
   vdrl3Date: { type: Date, required: true },
-  vdrl3Titulation: { type: String, required: true },
+  vdrl3Titration: { type: String, required: true },
   partnerTreatment: { type: Boolean, default: false },
   observations: { type: String, default: null },
   patient: {

@@ -6,7 +6,7 @@ const examSchema = new Schema({
   trepTestResult: { type: String, required: true },
   trepTestDate: { type: Date, required: true },
   nonTrepTestVDRL: { type: String, required: true },
-  nonTrepTestTitulation: { type: String, required: true },
+  nonTrepTestTitration: { type: String, required: true },
   nonTrepTestDate: { type: Date, required: true },
   refObservations: { type: String, required: true },
   onTreatment: { type: String, default: false },
