@@ -5,6 +5,7 @@ const examSchema = new Schema({
   trepTestType: { type: String, required: true },
   trepTestResult: { type: String, required: true },
   trepTestDate: { type: Date, required: true },
+  trepTestLocation: { type: String, required: true },
   nonTrepTestVDRL: { type: String, required: true },
   nonTrepTestTitration: { type: String, required: true },
   nonTrepTestDate: { type: Date, required: true },
