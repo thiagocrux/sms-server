@@ -4,7 +4,7 @@ const { model, Schema } = mongoose;
 const treatmentSchema = new Schema({
   medication: { type: String, required: true },
   ubsLocation: { type: String, required: true },
-  startDate: { type: Date, required: true },
+  startDate: { type: String, required: true },
   dosage: { type: String, required: true },
   observations: { type: String, required: true },
   partnerInfo: { type: String, required: true },

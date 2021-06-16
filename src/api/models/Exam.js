@@ -4,11 +4,11 @@ const { model, Schema } = mongoose;
 const examSchema = new Schema({
   trepTestType: { type: String, required: true },
   trepTestResult: { type: String, required: true },
-  trepTestDate: { type: Date, required: true },
+  trepTestDate: { type: String, required: true },
   trepTestLocation: { type: String, required: true },
   nonTrepTestVDRL: { type: String, required: true },
   nonTrepTestTitration: { type: String, required: true },
-  nonTrepTestDate: { type: Date, required: true },
+  nonTrepTestDate: { type: String, required: true },
   refObservations: { type: String, required: true },
   onTreatment: { type: Boolean, default: false },
   onObservation: { type: Boolean, default: false },

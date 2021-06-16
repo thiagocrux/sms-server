@@ -7,7 +7,7 @@ const patientSchema = new Schema({
   name: { type: String, required: true },
   cpf: { type: String, required: true, unique: true },
   socialName: { type: String, default: null },
-  birthDate: { type: Date, required: true },
+  birthDate: { type: String, required: true },
   gender: { type: String, required: true },
   nationality: { type: String, required: true },
   phone: { type: String, required: true },
