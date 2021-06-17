@@ -44,10 +44,10 @@ exports.createPatient = async (req, res) => {
 
 exports.updatePatient = async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params.patientID;
     const currentDateTime = moment().utc(-03).format();
     const updates = { ...req.body, updatedAt: currentDateTime };
-    const updatedPatient = await Patient.findByIdAndUpdate(id, updates, { new: true });
+    const updatedPatient = await Patient.findByIdAndUpdate(id, updates);
 
     res.status(200).json({
       patient: updatedPatient,
