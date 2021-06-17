@@ -3,9 +3,7 @@ const moment = require('moment');
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    console.log(user);
-
+    const user = await User.findById(req.params.userID);
     res.status(200).json({ user });
   } catch (error) {
     res.status(400).json({ error });
@@ -47,7 +45,9 @@ exports.updateUser = async (req, res) => {
     const id = req.params.id;
     const currentDateTime = moment().utc(-03).format();
     const updates = { ...req.body, updatedAt: Date.now() };
-    const updatedUser = await User.findByIdAndUpdate(id, updates, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(id, updates, {
+      new: true,
+    });
 
     res.status(200).json({
       user: updatedUser,
