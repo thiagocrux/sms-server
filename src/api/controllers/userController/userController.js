@@ -42,7 +42,7 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params.userID;
     const currentDateTime = moment().utc(-03).format();
     const updates = { ...req.body, updatedAt: Date.now() };
     const updatedUser = await User.findByIdAndUpdate(id, updates, {
