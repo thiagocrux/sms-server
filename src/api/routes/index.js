@@ -4,4 +4,10 @@ const patientRoutes = require('./patientRoutes/patientRoutes');
 const treatmentRoutes = require('./treatmentRoutes/treatmentRoutes');
 const userRoutes = require('./userRoutes/userRoutes');
 
-module.exports = { examRoutes, monitoringRoutes, patientRoutes, treatmentRoutes, userRoutes };
+module.exports = {
+  examRoutes,
+  monitoringRoutes,
+  patientRoutes,
+  treatmentRoutes,
+  userRoutes,
+};
