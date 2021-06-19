@@ -70,9 +70,7 @@ exports.register = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    console.log(user);
-
+    const user = await User.findById(req.params.userID);
     res.status(200).json({ user });
   } catch (error) {
     res.status(400).json({ error });
@@ -111,7 +109,7 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params.userID;
     const currentDateTime = moment().utc(-03).format();
     const updates = { ...req.body, updatedAt: Date.now() };
     const updatedUser = await User.findByIdAndUpdate(id, updates, {
