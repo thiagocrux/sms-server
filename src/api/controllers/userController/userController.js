@@ -1,5 +1,4 @@
 const User = require('../../models/User');
-const moment = require('moment');
 
 exports.getUser = async (req, res) => {
   try {
@@ -22,11 +21,9 @@ exports.getAllUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const currentDateTime = moment().utc(-03).format();
-
     const createdUser = await User.create({
       ...req.body,
-      createdAt: currentDateTime,
+      createdAt: Date.now(),
       updatedAt: null,
     });
 
@@ -43,7 +40,6 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const id = req.params.userID;
-    const currentDateTime = moment().utc(-03).format();
     const updates = { ...req.body, updatedAt: Date.now() };
     const updatedUser = await User.findByIdAndUpdate(id, updates, {
       new: true,
