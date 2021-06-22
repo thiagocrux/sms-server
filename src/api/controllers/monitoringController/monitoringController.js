@@ -1,5 +1,5 @@
 const Monitoring = require('../../models/Monitoring');
-const moment = require('moment');
+const { getCurrentDate } = require('../../utils/helpers');
 
 exports.getMonitoring = async (req, res) => {
   try {
@@ -25,12 +25,10 @@ exports.getAllMonitorings = async (req, res) => {
 
 exports.createMonitoring = async (req, res) => {
   try {
-    const currentDateTime = moment().utc(-03).format();
-
     const createdMonitoring = await Monitoring.create({
       ...req.body,
       patient: req.params.patientID,
-      createdAt: currentDateTime,
+      createdAt: getCurrentDate(),
       updatedAt: null,
     });
 
@@ -47,9 +45,10 @@ exports.createMonitoring = async (req, res) => {
 exports.updateMonitoring = async (req, res) => {
   try {
     const id = req.params.monitoringID;
-    const currentDateTime = moment().utc(-03).format();
-    const updates = { ...req.body, updatedAt: currentDateTime };
-    const updatedMonitoring = await Monitoring.findByIdAndUpdate(id, updates, { new: true });
+    const updates = { ...req.body, updatedAt: getCurrentDate() };
+    const updatedMonitoring = await Monitoring.findByIdAndUpdate(id, updates, {
+      new: true,
+    });
 
     res.status(200).json({
       monitoring: updatedMonitoring,

@@ -1,48 +1,62 @@
-const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const moment = require('moment');
+
+const User = require('../../models/User');
+const { getCurrentDate } = require('../../utils/helpers');
 
 exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    return user.length < 1
-      ? res.status(401).json({ message: 'Auth failed' })
-      : bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (err)
-            return res.status(401).json({
-              message: 'Auth failed',
-            });
-          if (result) {
-            const token = jwt.sign(
-              {
-                email: user.email,
-                userID: user._id,
-              },
-              process.env.TOKEN_SECRET,
-              {
-                expiresIn: '12h',
-              }
-            );
-            return res.status(201).json({
-              message: 'Auth succesfull',
-              token,
-            });
-          } else {
-            return res.status(401).json({
-              message: 'Auth failed',
-            });
-          }
-        });
+    if (user.length < 1) {
+      return res.status(401).json({ message: 'No users found' });
+    } else {
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if (err)
+          return res.status(401).json({
+            message: 'Auth failed',
+          });
+
+        if (result) {
+          const token = jwt.sign(
+            {
+              userID: user._id,
+            },
+            process.env.TOKEN_SECRET,
+
+            {
+              expiresIn: '12h',
+            }
+          );
+
+          return res.status(201).json({
+            message: 'Auth succesfull',
+            auth: true,
+            user: {
+              _id: user._id,
+              admin: user.admin,
+              name: user.name,
+              cpf: user.cpf,
+              email: user.email,
+              workLocation: user.workLocation,
+              role: user.role,
+            },
+            token,
+          });
+        } else {
+          return res.status(401).json({
+            message: 'Auth failed',
+            auth: false,
+          });
+        }
+      });
+    }
   } catch (err) {
     console.log(err);
-    res.status(400).send({ error: 'Login failed' });
+    res.status(400).send({ message: 'Login failed', auth: false, error: err });
   }
 };
 
-exports.register = async (req, res) => {
-  const currentDateTime = moment().utc(-03).format();
-
+exports.createUser = async (req, res) => {
   try {
     const user = await User.find({ email: req.body.email });
     return user.length >= 1
@@ -56,7 +70,7 @@ exports.register = async (req, res) => {
             const user = User.create({
               ...req.body,
               password: hash,
-              createdAt: currentDateTime,
+              createdAt: getCurrentDate(),
               updatedAt: null,
             });
 
@@ -89,11 +103,9 @@ exports.getAllUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const currentDateTime = moment().utc(-03).format();
-
     const createdUser = await User.create({
       ...req.body,
-      createdAt: currentDateTime,
+      createdAt: getCurrentDate(),
       updatedAt: null,
     });
 
@@ -110,8 +122,10 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const id = req.params.userID;
-    const currentDateTime = moment().utc(-03).format();
-    const updates = { ...req.body, updatedAt: Date.now() };
+    const updates = {
+      ...req.body,
+      updatedAt: getCurrentDate(),
+    };
     const updatedUser = await User.findByIdAndUpdate(id, updates, {
       new: true,
     });

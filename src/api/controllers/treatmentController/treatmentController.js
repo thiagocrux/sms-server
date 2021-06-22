@@ -1,5 +1,5 @@
+const { getCurrentDate } = require('../../utils/helpers');
 const Treatment = require('../../models/Treatment');
-const moment = require('moment');
 
 exports.getTreatment = async (req, res) => {
   try {
@@ -25,12 +25,10 @@ exports.getAllTreatments = async (req, res) => {
 
 exports.createTreatment = async (req, res) => {
   try {
-    const currentDateTime = moment().utc(-03).format();
-
     const createdTreatment = await Treatment.create({
       ...req.body,
       patient: req.params.patientID,
-      createdAt: currentDateTime,
+      createdAt: getCurrentDate(),
       updatedAt: null,
     });
 
@@ -47,9 +45,10 @@ exports.createTreatment = async (req, res) => {
 exports.updateTreatment = async (req, res) => {
   try {
     const id = req.params.treatmentID;
-    const currentDateTime = moment().utc(-03).format();
-    const updates = { ...req.body, updatedAt: currentDateTime };
-    const updatedTreatment = await Treatment.findByIdAndUpdate(id, updates, { new: true });
+    const updates = { ...req.body, updatedAt: getCurrentDate() };
+    const updatedTreatment = await Treatment.findByIdAndUpdate(id, updates, {
+      new: true,
+    });
 
     res.status(200).json({
       treatment: updatedTreatment,
