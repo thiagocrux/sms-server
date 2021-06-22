@@ -8,7 +8,7 @@ function database() {
       useCreateIndex: true,
     })
     .then(() => {
-      console.log('[database] running on port:27017');
+      console.log('[database] running on mongo atlas');
     });
 }
 
