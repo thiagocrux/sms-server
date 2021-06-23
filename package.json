@@ -15,10 +15,10 @@
     "@commitlint/config-conventional": "^12.1.4",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "express": "^4.17.1",
     "husky": "^6.0.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "date-fns": "^2.22.1",
