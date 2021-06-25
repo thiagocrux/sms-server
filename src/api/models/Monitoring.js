@@ -2,14 +2,13 @@ const mongoose = require('mongoose');
 const { model, Schema } = mongoose;
 
 const monitoringSchema = new Schema({
-  vdrl1Date: { type: String, required: true },
-  vdrl1Titration: { type: String, required: true },
-  vdrl2Date: { type: String, required: true },
-  vdrl2Titration: { type: String, required: true },
-  vdrl3Date: { type: String, required: true },
-  vdrl3Titration: { type: String, required: true },
   partnerTreatment: { type: Boolean, default: false },
   observations: { type: String, default: null },
+  exam: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Exam',
+    required: true,
+  },
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient',
