@@ -5,7 +5,8 @@ const cors = require('cors');
 
 const {
   examRoutes,
-  monitoringRoutes,
+  notificationRoutes,
+  observationRoutes,
   patientRoutes,
   treatmentRoutes,
   userRoutes,
@@ -32,7 +33,8 @@ app.use(morgan('dev'));
 /* Routes */
 
 app.use('/api/v1/patients', examRoutes);
-app.use('/api/v1/patients', monitoringRoutes);
+app.use('/api/v1/patients', notificationRoutes);
+app.use('/api/v1/patients', observationRoutes);
 app.use('/api/v1/patients', patientRoutes);
 app.use('/api/v1/patients', treatmentRoutes);
 app.use('/api/v1/users', userRoutes);

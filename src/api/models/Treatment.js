@@ -8,11 +8,6 @@ const treatmentSchema = new Schema({
   dosage: { type: String, required: true },
   observations: { type: String, required: true },
   partnerInfo: { type: String, required: true },
-  exam: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Exam',
-    required: true,
-  },
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient',

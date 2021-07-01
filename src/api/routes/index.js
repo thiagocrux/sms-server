@@ -1,12 +1,14 @@
 const examRoutes = require('./examRoutes/examRoutes');
-const monitoringRoutes = require('./monitoringRoutes/monitoringRoutes');
+const notificationRoutes = require('./notificationRoutes/notificationRoutes');
+const observationRoutes = require('./observationRoutes/observationRoutes');
 const patientRoutes = require('./patientRoutes/patientRoutes');
 const treatmentRoutes = require('./treatmentRoutes/treatmentRoutes');
 const userRoutes = require('./userRoutes/userRoutes');
 
 module.exports = {
   examRoutes,
-  monitoringRoutes,
+  notificationRoutes,
+  observationRoutes,
   patientRoutes,
   treatmentRoutes,
   userRoutes,

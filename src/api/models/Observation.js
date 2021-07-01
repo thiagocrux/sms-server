@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 const { model, Schema } = mongoose;
 
-const monitoringSchema = new Schema({
-  partnerTreatment: { type: Boolean, default: false },
+const observationSchema = new Schema({
   observations: { type: String, default: null },
-  exam: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Exam',
-    required: true,
-  },
+  partnerTreatment: { type: Boolean, default: false },
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient',
@@ -18,6 +13,6 @@ const monitoringSchema = new Schema({
   updatedAt: { type: Date },
 });
 
-const Monitoring = model('Monitoring', monitoringSchema);
+const Observation = model('Observation', observationSchema);
 
-module.exports = Monitoring;
+module.exports = Observation;

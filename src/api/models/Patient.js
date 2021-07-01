@@ -16,7 +16,7 @@ const patientSchema = new Schema({
   motherName: { type: String, required: true },
   fatherName: { type: String },
   isDeceased: { type: Boolean, default: false },
-  notificationType: { type: String, required: true },
+  monitoringType: { type: String, required: true },
   zipCode: { type: String, required: true },
   state: { type: String, required: true },
   city: { type: String, required: true },
