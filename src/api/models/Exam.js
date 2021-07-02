@@ -10,8 +10,6 @@ const examSchema = new Schema({
   nonTrepTestTitration: { type: String, required: true },
   nonTrepTestDate: { type: String, required: true },
   refObservations: { type: String, required: true },
-  onTreatment: { type: Boolean, default: false },
-  onObservation: { type: Boolean, default: false },
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient',
