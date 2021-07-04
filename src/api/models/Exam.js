@@ -9,6 +9,8 @@ const examSchema = new Schema({
   nonTrepTestVDRL: { type: String, required: true },
   nonTrepTestTitration: { type: String, required: true },
   nonTrepTestDate: { type: String, required: true },
+  nonTrepOtherTest: { type: String },
+  nonTrepOtherTestDate: { type: String },
   refObservations: { type: String, required: true },
   patient: {
     type: mongoose.Schema.Types.ObjectId,
