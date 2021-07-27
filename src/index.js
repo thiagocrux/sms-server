@@ -8,6 +8,7 @@ const {
   notificationRoutes,
   observationRoutes,
   patientRoutes,
+  reportRoutes,
   treatmentRoutes,
   userRoutes,
 } = require('./api/routes');
@@ -37,6 +38,7 @@ app.use('/api/v1/patients', notificationRoutes);
 app.use('/api/v1/patients', observationRoutes);
 app.use('/api/v1/patients', patientRoutes);
 app.use('/api/v1/patients', treatmentRoutes);
+app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/users', userRoutes);
 
 module.exports = app;
