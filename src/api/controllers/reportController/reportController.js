@@ -86,7 +86,7 @@ exports.getReport = async (req, res) => {
       status: 'success',
       stats: {
         numberOfPatients: patients.length,
-        numberOfFemalePatient: filteredFemalePatients.length,
+        numberOfFemalePatients: filteredFemalePatients.length,
         numberOfMalePatients: filteredMalePatients.length,
         numberOfIntersexPatients: filteredIntersexPatients.length,
         acquiredSyphilisOcurrences: filteredAcquiredSyphilisOcurrences.length,
@@ -223,7 +223,7 @@ exports.getReportByYear = async (req, res) => {
       status: 'success',
       stats: {
         numberOfPatients: filteredPatients.length,
-        numberOfFemalePatient: filteredFemalePatients.length,
+        numberOfFemalePatients: filteredFemalePatients.length,
         numberOfMalePatients: filteredMalePatients.length,
         numberOfIntersexPatients: filteredIntersexPatients.length,
         acquiredSyphilisOcurrences: filteredAcquiredSyphilisOcurrences.length,
